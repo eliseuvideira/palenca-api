@@ -1,6 +1,5 @@
 import { endpoint } from "@ev-fns/endpoint";
-import { HttpError } from "@ev-fns/errors";
-import { ResponseMessage } from "../utils/constants";
+import { Platform, ResponseMessage } from "../utils/constants";
 
 export const uberLoginPost = endpoint(async (req, res) => {
   const { email, password } = req.body;
@@ -24,5 +23,20 @@ export const uberLoginPost = endpoint(async (req, res) => {
 });
 
 export const uberProfileGet = endpoint(async (req, res) => {
-  throw new HttpError(501, "Not Implemented");
+  const { accessToken } = req.params;
+
+  if (accessToken !== process.env.UBER_ACCESS_TOKEN) {
+    res.json({
+      message: ResponseMessage.CREDENTIALS_INVALID,
+      details: "Incorrect token",
+    });
+
+    return;
+  }
+
+  res.json({
+    message: ResponseMessage.SUCCESS,
+    platform: Platform.uber,
+    profile: {},
+  });
 });

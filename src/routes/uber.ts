@@ -19,6 +19,7 @@ router.post("/uber/login", body(uberLoginPostBody), uberLoginPost);
 /**
  * GET /uber/profile/{accessToken}
  * @tag Uber
+ * @pathParam {string} accessToken
  * @response 200
  * @responseContent {UberProfileGetResponseBody} 200.application/json
  * @response default
