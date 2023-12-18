@@ -14,7 +14,7 @@ app.set("trust proxy", ["loopback", "linklocal", "uniquelocal"]);
 app.use(cors());
 app.use(json());
 app.use(morgan("combined", { skip: () => process.env.NODE_ENV === "test" }));
-app.use(openapi({ apiName: process.env.API_NAME }));
+app.use(openapi({ apiName: process.env.API_NAME, redirect: false }));
 
 const routes = readdirSync(join(__dirname, "routes"));
 for (const route of routes) {
