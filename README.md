@@ -1,4 +1,4 @@
-How to setup:
+# How to setup
 
 Copy .env.example to .env
 
@@ -6,7 +6,7 @@ Copy .env.example to .env
 cp .env.example .env
 ```
 
-Fill the variables.
+## Fill the variables
 
 ```
 # string(development | test | production | staging), example: development
@@ -37,7 +37,7 @@ LANG=en_US.UTF-8
 TZ=UTC
 ```
 
-Run in development mode
+## Run in development mode
 
 ```sh
 yarn dev
