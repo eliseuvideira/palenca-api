@@ -100,3 +100,38 @@ describe("POST /uber/login", () => {
     });
   });
 });
+
+describe("GET /uber/profile/:accessToken", () => {
+  describe("401 - Unauthorized", () => {
+    test("Invalid credentials", async () => {
+      expect.assertions(2);
+
+      const res = await request().get(
+        `/uber/profile/000000000000000000000000000000000000`,
+      );
+
+      expect(res.status).toBe(401);
+      expect(res.body).toEqual({
+        message: "CREDENTIALS_INVALID",
+        details: "Incorrect token",
+      });
+    });
+  });
+
+  describe("200 - OK", () => {
+    test("Valid credentials", async () => {
+      expect.assertions(2);
+
+      const res = await request().get(
+        `/uber/profile/${process.env.UBER_ACCESS_TOKEN}`,
+      );
+
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual({
+        message: "SUCCESS",
+        platform: "uber",
+        profile: {},
+      });
+    });
+  });
+});
