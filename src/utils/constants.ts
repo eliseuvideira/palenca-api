@@ -1,0 +1,4 @@
+export enum ResponseMessage {
+  SUCCESS = "SUCCESS",
+  CREDENTIALS_INVALID = "CREDENTIALS_INVALID",
+}
