@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { uberLoginPost, uberProfileGet } from "../endpoints/uber";
+import { body, params } from "@ev-fns/validation";
+import { uberLoginPostBody, uberProfileGetParams } from "../validations/uber";
 
 const router = Router();
 
@@ -12,7 +14,7 @@ const router = Router();
  * @response default
  * @responseContent {Error} default.application/json
  */
-router.post("/uber/login", uberLoginPost);
+router.post("/uber/login", body(uberLoginPostBody), uberLoginPost);
 
 /**
  * GET /uber/profile/{accessToken}
@@ -22,6 +24,10 @@ router.post("/uber/login", uberLoginPost);
  * @response default
  * @responseContent {Error} default.application/json
  */
-router.get("/uber/profile/:accessToken", uberProfileGet);
+router.get(
+  "/uber/profile/:accessToken",
+  params(uberProfileGetParams),
+  uberProfileGet,
+);
 
 export default router;
