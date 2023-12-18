@@ -8,7 +8,7 @@ export const uberLoginPost = endpoint(async (req, res) => {
     email !== process.env.UBER_LOGIN_EMAIL ||
     password !== process.env.UBER_LOGIN_PASSWORD
   ) {
-    res.json({
+    res.status(401).json({
       message: ResponseMessage.CREDENTIALS_INVALID,
       details: "Incorrect username or password",
     });
@@ -16,7 +16,7 @@ export const uberLoginPost = endpoint(async (req, res) => {
     return;
   }
 
-  res.json({
+  res.status(200).json({
     message: ResponseMessage.SUCCESS,
     accessToken: process.env.UBER_ACCESS_TOKEN,
   });
@@ -26,7 +26,7 @@ export const uberProfileGet = endpoint(async (req, res) => {
   const { accessToken } = req.params;
 
   if (accessToken !== process.env.UBER_ACCESS_TOKEN) {
-    res.json({
+    res.status(401).json({
       message: ResponseMessage.CREDENTIALS_INVALID,
       details: "Incorrect token",
     });
@@ -34,7 +34,7 @@ export const uberProfileGet = endpoint(async (req, res) => {
     return;
   }
 
-  res.json({
+  res.status(200).json({
     message: ResponseMessage.SUCCESS,
     platform: Platform.uber,
     profile: {},
