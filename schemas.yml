@@ -14,42 +14,54 @@ components:
       required:
         - message
 
-    Book:
+    UberLoginPostRequestBody:
       type: object
       properties:
-        bookId:
-          type: integer
-          example: 1
-        title:
+        email:
           type: string
-          example: Moby-Dick
-        author:
+          example: example@email.com
+        password:
           type: string
-          example: Herman Melville
+          example: password
       required:
-        - bookId
-        - title
-        - author
+        - email
+        - password
 
-    BookPostRequestBody:
+    UberLoginPostResponseBody:
       type: object
       properties:
-        title:
+        message:
           type: string
-          example: Moby-Dick
-        author:
+          enum:
+            - SUCCESS
+            - CREDENTIALS_INVALID
+          example: SUCCESS
+        access_token:
           type: string
-          example: Herman Melville
+          example: "000000000000000000000000000000000000"
       required:
-        - title
-        - author
+        - message
+        - access_token
 
-    BookPatchRequestBody:
+    UberProfileGetResponseBody:
       type: object
       properties:
-        title:
+        message:
           type: string
-          example: Moby-Dick
-        author:
+          enum:
+            - SUCCESS
+            - ACCESS_TOKEN_INVALID
+          example: SUCCESS
+        platform:
           type: string
-          example: Herman Melville
+          enum:
+            - uber
+          example: uber
+        profile:
+          type: object
+          properties:
+          required:
+      required:
+        - message
+        - platform
+        - profile
