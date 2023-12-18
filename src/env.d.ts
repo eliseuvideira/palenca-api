@@ -6,13 +6,19 @@ declare namespace NodeJS {
     // number, example: 50001
     PORT: string;
 
-    // string, example: rest-api-starter
+    // string, example: palenca-api
     API_NAME: string;
 
-    // string, example: q1M7dW9XHBwtPxvKMzlmrw56Bn7MCg58Kjfb
-    API_TOKEN: string;
+    // string, example: example@email.com
+    UBER_LOGIN_EMAIL: string;
 
-    // string, example: registry.server.pw/rest-api-starter
+    // string, example: b7fgOifRh5souLzSg4b5gCS3ateuukzy01rr
+    UBER_LOGIN_PASSWORD: string;
+
+    // string, example: 16HmBJgYtpWO6spYVE70QIslEDGirsEquK8Q
+    UBER_ACCESS_TOKEN: string;
+
+    // string, example: registry.server.pw/palenca-api
     DOCKER_IMAGE: string;
 
     // string(en_US.UTF-8 | pt_BR.UTF-8 | ...), example: en_US.UTF-8
